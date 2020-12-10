@@ -1,4 +1,9 @@
+var disableAlert = document.createElement("script");
+disableAlert.textContent = "window.alert = function() {};";
 new MutationObserver(mutations => {
+    if(!document.contains(disableAlert)) {
+        document.documentElement.appendChild(disableAlert);
+    }
     mutations.forEach((mutation) => {
         if(mutation.target.getAttribute("class") == "kif_t") {
             let x = document.getElementsByClassName("kif_t");
