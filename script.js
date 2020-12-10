@@ -1,10 +1,12 @@
 new MutationObserver(mutations => {
     mutations.forEach((mutation) => {
         if(mutation.target.getAttribute("class") == "kif_t") {
-            let x = mutation.target.parentElement, y = document.createRange().createContextualFragment(mutation.target.outerHTML).children.item(0);
-            mutation.target.remove();
-            y.setAttribute("style", "border: 3px solid green; background-color: rgba(0, 128, 0, 0.15);");
-            x.appendChild(y);
+            let x = document.getElementsByClassName("kif_t");
+            for(let i = 0; i < x.length; i++) {
+                console.log(x.item(i));
+                x.item(i).outerHTML = x.item(i).outerHTML;
+                x.item(i).style = "border: 3px solid green; background-color: rgba(0, 128, 0, 0.15);";
+            }
         }
     });
-}).observe(document, {attributes: true, childList: true, subtree: true});
+}).observe(document, {childList: true, subtree: true});
